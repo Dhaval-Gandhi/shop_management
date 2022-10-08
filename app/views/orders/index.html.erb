@@ -1,11 +1,11 @@
 <% content_for :title do %>
-  Customers
+  Orders
 <% end %>
 
 <% content_for :action_buttons do %>
   <div class="row">
     <div class="col-4">
-      <%= link_to 'New Customer', new_customer_path, class: 'btn btn-primary' %>
+      <%= link_to 'New Order', new_order_path, class: 'btn btn-primary' %>
     </div>
     <div class="col-8">
       <div class="input-group">
@@ -20,14 +20,15 @@
   <table class="table table-bordered">
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Contact</th>
-        <th>Address</th>
+        <th>Order No.</th>
+        <th>Date</th>
+        <th>Customer Name</th>
+        <th>Net Amount</th>
         <th>Actions</th>
       </tr>
     </thead>
     <tbody id="list_body">
-      <%= render partial: 'list', locals: {customers: @customers} %>
+      <%= render partial: 'list', locals: {orders: @orders} %>
     </tbody>
   </table>
 </div>

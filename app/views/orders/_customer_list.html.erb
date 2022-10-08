@@ -1,0 +1,15 @@
+<% if customers.present? %>
+  <% customers.each do |customer| %>
+    <tr>
+      <td><%= customer.name %></td>
+      <td><%= customer.contact %></td>
+      <td>
+        <%= link_to 'Select', 'javascript:void;', class: 'btn btn-sm btn-primary' %>
+      </td>
+    </tr>
+  <% end %>
+<% else %>
+  <tr>
+    <td colspan="3" class="text-danger">There is no customer.</td>
+  </tr>
+<% end %>

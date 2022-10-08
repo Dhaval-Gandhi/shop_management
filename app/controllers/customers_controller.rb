@@ -2,7 +2,7 @@ class CustomersController < ApplicationController
   def index
     @search = params[:search]
     @customers = Customer.all
-    @customers = @customers.where('name ilike :search', search: "%#{@search}%") if @search.present?
+    @customers = @customers.where('name ilike :search OR contact ilike :search', search: "%#{@search}%") if @search.present?
   end
 
   def new

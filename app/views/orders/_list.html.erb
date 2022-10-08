@@ -1,0 +1,17 @@
+<% if orders.present? %>
+  <% orders.each do |order| %>
+    <tr>
+      <td><%= order.id %></td>
+      <td><%= order.date %></td>
+      <td><%= order.customer.name %></td>
+      <td><%= order.net_amount %></td>
+      <td>
+        <%= link_to 'Edit', edit_order_path(id: order.id), class: 'btn btn-sm btn-primary' %>
+      </td>
+    </tr>
+  <% end %>
+<% else %>
+  <tr>
+    <td colspan="5" class="text-danger">There is no order.</td>
+  </tr>
+<% end %>

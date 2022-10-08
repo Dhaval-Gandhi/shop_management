@@ -1,0 +1,52 @@
+<% content_for :title do %>
+  New Order
+<% end %>
+
+<% content_for :action_buttons do %>
+  <%= link_to 'Back', orders_path, class: 'btn btn-secondary' %>
+<% end %>
+
+
+<div class="row">
+  <div class="col-md-4">
+    <div class="row mb-3">
+      <%= text_field_tag :search, nil, id: 'txt_customer_search', class: 'form-control', placeholder: 'Search Customer' %>
+    </div>
+    <div class="row mb-3 cust-item-search">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Contact</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="order_customer_list">
+          <%= render partial: 'customer_list', locals: {customers: @customers} %>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="row mb-3">
+      <%= text_field_tag :search, nil, id: 'txt_item_search', class: 'form-control', placeholder: 'Search item' %>
+    </div>
+    <div class="row mb-3 cust-item-search">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Rate</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="order_item_list">
+          <%= render partial: 'item_list', locals: {items: @items} %>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+  <div class="col-md-8">
+  </div>
+</div>
+
