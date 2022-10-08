@@ -1,0 +1,16 @@
+<% if items.present? %>
+  <% items.each do |item| %>
+    <tr>
+      <td><%= item.name %></td>
+      <td><%= item.unit %></td>
+      <td><%= item.rate %></td>
+      <td>
+        <%= link_to 'Edit', edit_item_path(id: item.id), class: 'btn btn-sm btn-primary' %>
+      </td>
+    </tr>
+  <% end %>
+<% else %>
+  <tr>
+    <td colspan="4" class="text-danger">There is no item.</td>
+  </tr>
+<% end %>

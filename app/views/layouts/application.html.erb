@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ShopManagement</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>    
+    <%= javascript_import_module_tag "common" %>
+    <%= javascript_import_module_tag "#{params[:controller]}-#{params[:action]}" %>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-sm mb-2 bg-dark navbar-dark">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <%= link_to 'Home', root_path, class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Customers', customers_path, class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Items', items_path, class: 'nav-link' %>
+        </li>
+      </ul>
+    </nav>
+    <div class="container-fluid p-5">
+      <div id="notify">
+        <%= render "shared/flash_messages" %>
+      </div>
+      <div class="clearfix mb-3">
+        <span class="float-start">
+          <h1>
+            <%= yield :title %>  
+          </h1>
+        </span>
+        <span class="float-end pt-2">
+          <%= yield :action_buttons %>
+        </span>
+      </div>
+      <%= yield %>
+    </div>
+  </body>
+
+</html>
