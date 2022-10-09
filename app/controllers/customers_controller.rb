@@ -5,6 +5,11 @@ class CustomersController < ApplicationController
     @customers = @customers.where('name ilike :search OR contact ilike :search', search: "%#{@search}%") if @search.present?
   end
 
+  def show
+    @customer = Customer.find_by_id(params[:id])
+    @orders = @customer.orders
+  end
+
   def new
     @customer = Customer.new
   end
