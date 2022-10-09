@@ -1,0 +1,15 @@
+- if items.present?
+  - items.each do |item|
+    tr
+      td
+        = item.name
+      td
+        = item.unit
+      td
+        = item.rate
+      td
+        = link_to 'Edit', edit_item_path(id: item.id), class: 'btn btn-sm btn-primary'
+- else
+  tr
+    td.text-danger[colspan="4"]
+      | There is no item.

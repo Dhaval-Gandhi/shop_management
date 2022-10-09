@@ -1,0 +1,24 @@
+doctype html
+html
+  head
+    title
+      | ShopManagement
+    meta[name="viewport" content="width=device-width,initial-scale=1"]
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag "application", "data-turbo-track": "reload"
+    = javascript_importmap_tags
+    = javascript_import_module_tag "common"
+    = javascript_import_module_tag "#{params[:controller]}-#{params[:action]}"
+  body
+    = render "shared/navigation_bar"
+    .container-fluid.p-5
+      #notify
+        = render "shared/flash_messages"
+      .clearfix.mb-3
+        span.float-start
+          h1
+            = yield :title
+        span.float-end.pt-2
+          = yield :action_buttons
+      = yield

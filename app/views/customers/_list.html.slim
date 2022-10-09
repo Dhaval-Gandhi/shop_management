@@ -1,0 +1,15 @@
+- if customers.present?
+  - customers.each do |customer|
+    tr
+      td
+        = customer.name
+      td
+        = customer.contact
+      td
+        = customer.address
+      td
+        = link_to 'Edit', edit_customer_path(id: customer.id), class: 'btn btn-sm btn-primary'
+- else
+  tr
+    td.text-danger[colspan="4"]
+      | There is no customer.

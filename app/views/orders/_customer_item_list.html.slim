@@ -1,0 +1,28 @@
+.row.mb-3
+  = text_field_tag :search, nil, id: 'txt_customer_search', class: 'form-control', placeholder: 'Search Customer'
+.row.mb-3.cust-item-search
+  table.table.table-bordered
+    thead
+      tr
+        th
+          | Name
+        th
+          | Contact
+        th
+          | Actions
+    tbody#order_customer_list
+      = render partial: 'customer_list', locals: {customers: @customers}
+.row.mb-3
+  = text_field_tag :search, nil, id: 'txt_item_search', class: 'form-control', placeholder: 'Search item'
+.row.mb-3.cust-item-search
+  table.table.table-bordered
+    thead
+      tr
+        th
+          | Name
+        th
+          | Rate
+        th
+          | Actions
+    tbody#order_item_list
+      = render partial: 'item_list', locals: {items: @items}

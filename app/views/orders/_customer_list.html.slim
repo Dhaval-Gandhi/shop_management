@@ -1,0 +1,13 @@
+- if customers.present?
+  - customers.each do |customer|
+    tr
+      td
+        = customer.name
+      td
+        = customer.contact
+      td
+        = link_to 'Select', 'javascript:void;', class: 'btn btn-sm btn-primary'
+- else
+  tr
+    td.text-danger[colspan="3"]
+      | There is no customer.

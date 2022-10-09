@@ -1,0 +1,17 @@
+- if orders.present?
+  - orders.each do |order|
+    tr
+      td
+        = order.id
+      td
+        = order.date
+      td
+        = order.customer.name
+      td
+        = order.net_amount
+      td
+        = link_to 'Edit', edit_order_path(id: order.id), class: 'btn btn-sm btn-primary'
+- else
+  tr
+    td.text-danger[colspan="5"]
+      | There is no order.
