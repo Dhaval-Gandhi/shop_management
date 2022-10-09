@@ -2,13 +2,13 @@
   - customers.each do |customer|
     tr
       td
-        = customer.name
+        = link_to customer.name, customer_path(id: customer)
       td
         = customer.contact
       td
         = customer.address
       td
-        = link_to 'Edit', edit_customer_path(id: customer.id), class: 'btn btn-sm btn-primary'
+        = link_to 'Edit', edit_customer_path(id: customer.id), class: 'btn btn-sm btn-primary me-3'
 - else
   tr
     td.text-danger[colspan="4"]
