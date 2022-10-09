@@ -1,2 +1,41 @@
-.row
-  .col-md-4
+= form_for @order, as: :order do |f|
+  .row.ms-3.mb-3
+    .col-md-4
+      = f.hidden_field :customer_id
+      = text_field_tag :customer_name, f.object&.customer&.name, class: 'form-control', placeholder: 'Customer Name', readonly: true
+    .col-md-4
+      = f.text_field :date, class: 'form-control', placeholder: 'DD/MM/YYYY', value: (f.object.date || DateTime.now).strftime('%d/%m/%Y')
+  .row.ms-3.mb-3
+    .col-md-12
+      table.table.table-bordered
+        thead
+          tr
+            th
+              | Name
+            th
+              | Qty
+            th
+              | Rate
+            th
+              | Actions
+        tbody#order_item_fields
+          = f.fields_for :order_items do |ff|
+            tr.item_field
+              td
+                = text_field_tag :item_name, ff.object&.item&.name, class: 'form-control', placeholder: 'Item Name', readonly: true
+              td
+                = ff.text_field :qty, class: 'form-control', placeholder: 'Qty'
+              td
+                = ff.text_field :rate, class: 'form-control', placeholder: 'Rate'
+              td
+                = ff.hidden_field :item_id
+                = link_to :X, 'javascript:void(0)', class: 'mt-1 btn btn-sm btn-danger remove_item'
+                - if ff.object.persisted?
+                  = ff.hidden_field :id, class: 'order_item_id'
+                  = ff.hidden_field :_destroy, class: 'order_item_destroy'
+
+  .row.ms-3.mb-3
+    .col-md-3
+      - btn_title = @order.persisted? ? 'Update' : 'Add'
+      = f.submit btn_title, class: 'btn btn-success'
+        

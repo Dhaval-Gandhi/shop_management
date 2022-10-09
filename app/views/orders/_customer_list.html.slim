@@ -6,7 +6,7 @@
       td
         = customer.contact
       td
-        = link_to 'Select', 'javascript:void;', class: 'btn btn-sm btn-primary'
+        = link_to 'Select', 'javascript:void(0)', class: 'btn btn-sm btn-primary customer_select', data: {id: customer.id, name: customer.name}
 - else
   tr
     td.text-danger[colspan="3"]

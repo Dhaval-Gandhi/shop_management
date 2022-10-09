@@ -6,7 +6,7 @@
       td
         = item.rate
       td
-        = link_to 'Select', 'javascript:void;', class: 'btn btn-sm btn-primary'
+        = link_to 'Select', 'javascript:void(0)', class: 'btn btn-sm btn-primary item_select', data: {id: item.id, name: item.name, rate: item.rate}
 - else
   tr
     td.text-danger[colspan="3"]
