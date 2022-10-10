@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
 
   def index
     @search = params[:search]
-    @orders = Order.includes(:customer).all
+    @orders = Order.joins(:customer).all
     @orders = @orders.where('customers.name ilike :search', search: "%#{@search}%") if @search.present?
   end
 
