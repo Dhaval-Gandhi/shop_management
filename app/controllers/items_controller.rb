@@ -36,6 +36,16 @@ class ItemsController < ApplicationController
     end
   end
 
+  def destroy
+    @item = Item.find_by_id(params[:id])
+    if @item.destroy
+      flash[:notice] = "Item deleted succesfully"
+    else
+      flash[:alert] = @item.errors.full_messages.join(', ')
+    end
+    redirect_to items_path
+  end
+
   private
 
   def item_params

@@ -1,0 +1,23 @@
+- if orders.present?
+  - orders.each do |order|
+    tr
+      td
+        = order.id
+      td
+        = order.date.strftime('%d-%b-%Y')
+      td
+        = order.customer.name
+      td
+        = order.net_amount
+      td
+        .row
+          .col
+            = link_to 'Edit', edit_order_path(id: order.id), class: 'btn btn-sm btn-primary'
+          .col
+            = button_to 'Delete', order_path(id: order.id), method: :delete, class: 'btn btn-sm btn-danger'
+          .col
+            = link_to 'Export', export_order_path(id: order.id), class: 'btn btn-sm btn-info'
+- else
+  tr
+    td.text-danger[colspan="5"]
+      | There is no order.

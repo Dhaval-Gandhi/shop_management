@@ -1,0 +1,12 @@
+= form_for @item, as: :item do |f|
+  .row.mb-3
+    .col-md-3
+      = f.text_field :name, class: 'form-control', placeholder: 'Item Name'
+    .col-md-3
+      = f.select :unit, options_for_select([['Kg',0],['Pcs',1]], Item.units[f.object.unit]), {}, class: 'form-select'
+    .col-md-3
+      = f.text_field :rate, class: 'form-control', placeholder: 'Enter Price'
+  .row.mb-3
+    .col-md-3
+      - btn_title = @item.persisted? ? 'Update' : 'Add'
+      = f.submit btn_title, class: 'btn btn-success'

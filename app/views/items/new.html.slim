@@ -1,0 +1,6 @@
+- content_for :title do
+  |  New Item 
+- content_for :action_buttons do
+  = link_to 'Back', items_path, class: 'btn btn-secondary'
+.row.mb-3
+  = render partial: 'form'

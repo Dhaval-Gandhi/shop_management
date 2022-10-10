@@ -1,0 +1,9 @@
+- content_for :title do
+  |  New Order 
+- content_for :action_buttons do
+  = link_to 'Back', orders_path, class: 'btn btn-secondary'
+.row
+  .col-md-4
+    = render partial: 'customer_item_list'
+  .col-md-8
+    = render partial: 'order_details'

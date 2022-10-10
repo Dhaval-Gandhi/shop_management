@@ -1,0 +1,13 @@
+= form_for @customer, as: :customer do |f|
+  .row.mb-3
+    .col-md-3
+      = f.text_field :name, class: 'form-control', placeholder: 'Full Name'
+    .col-md-3
+      = f.text_field :contact, class: 'form-control', placeholder: 'Contact Number'
+  .row.mb-3
+    .col-md-3
+      = f.text_area :address, class: 'form-control', placeholder: 'Address'
+  .row.mb-3
+    .col-md-3
+      - btn_title = @customer.persisted? ? 'Update' : 'Add'
+      = f.submit btn_title, class: 'btn btn-success'

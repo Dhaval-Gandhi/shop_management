@@ -1,0 +1,13 @@
+- if items.present?
+  - items.each do |item|
+    tr
+      td
+        = item.name
+      td
+        = item.rate
+      td
+        = link_to 'Select', 'javascript:void(0)', class: 'btn btn-sm btn-primary item_select', data: {id: item.id, name: item.name, rate: item.rate}
+- else
+  tr
+    td.text-danger[colspan="3"]
+      | There is no item.

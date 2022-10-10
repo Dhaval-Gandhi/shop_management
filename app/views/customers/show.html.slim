@@ -1,0 +1,41 @@
+- content_for :title do
+  |  Customer Details
+- content_for :action_buttons do
+  .row
+    .col
+      = link_to 'Back', customers_path, class: 'btn btn-secondary'
+    .col
+      = button_to 'Delete', customer_path(id: @customer.id), method: :delete, class: 'btn btn-danger'
+.row.mb-3
+  .col
+    strong
+      | Name: 
+    = @customer.name
+  .col
+    strong
+      | Contact: 
+    = @customer.contact
+  .col
+    strong
+      | Address: 
+    = @customer.address    
+.row.my-3
+  .col
+    h2
+      | Orders
+.row.mb-3
+  table.table.table-bordered
+    thead
+      tr
+        th
+          | Order No.
+        th
+          | Date
+        th
+          | Customer Name
+        th
+          | Net Amount
+        th
+          | Actions
+    tbody#list_body
+      = render partial: 'orders/list', locals: {orders: @customer.orders}

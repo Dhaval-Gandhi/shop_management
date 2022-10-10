@@ -1,0 +1,6 @@
+$('#order_customer_list').html("<%= j render partial: 'customer_list', locals: {customers: @customers} %>");
+
+$('.customer_select').on('click', function(){
+  $('#order_customer_id').val($(this).data('id'));
+  $('#customer_name').val($(this).data('name'));
+});
