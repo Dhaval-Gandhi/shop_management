@@ -6,6 +6,13 @@ class OrdersController < ApplicationController
     @orders = @orders.where('customers.name ilike :search', search: "%#{@search}%") if @search.present?
   end
 
+  def show
+    @order = Order.find_by_id(params[:id])
+    pdf_html = ActionController::Base.new.render_to_string(template: 'pdfs/order', layout: false, locals: { order: @order })
+    pdf = WickedPdf.new.pdf_from_string(pdf_html, page_height: 148, page_width: 105, margin: {top: 3,bottom: 3, left: 3, right: 3 })
+    send_data pdf, filename: "#{Time.now.to_i}.pdf"
+  end
+
   def new
     @customers = Customer.all
     @items = Item.all

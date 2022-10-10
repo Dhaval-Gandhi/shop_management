@@ -10,6 +10,7 @@
       td
         = order.net_amount
       td
+        = link_to 'Show', order_path(id: order.id), class: 'btn btn-sm btn-info'
         = link_to 'Edit', edit_order_path(id: order.id), class: 'btn btn-sm btn-primary'
 - else
   tr
