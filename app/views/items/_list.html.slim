@@ -8,7 +8,11 @@
       td
         = item.rate
       td
-        = link_to 'Edit', edit_item_path(id: item.id), class: 'btn btn-sm btn-primary'
+        .row
+          .col
+            = link_to 'Edit', edit_item_path(id: item.id), class: 'btn btn-sm btn-primary'
+          .col
+            = button_to 'Delete', item_path(id: item.id), method: :delete, class: 'btn btn-sm btn-danger'
 - else
   tr
     td.text-danger[colspan="4"]

@@ -304,10 +304,10 @@
           <th id="1794245641R5" style="height: 25px;" class="row-headers-background left-border"><div class="row-header-wrapper" style="line-height: 25px;"></div></th>
           <td class="s4"><%= index + 1 %></td>
           <td class="s5"><%= order_item.item&.name %></td>
-          <td class="s6"><%= order_item.qty.to_f %></td>
+          <td class="s6"><%= number_with_precision(order_item.qty.to_f, precision: 3) %></td>
           <td class="s7"><%= order_item.item&.unit %></td>
-          <td class="s8"><%= order_item.rate.to_f %></td>
-          <td class="s8"><%= order_item.amount.to_f %></td>
+          <td class="s8"><%= number_with_precision(order_item.rate.to_f, precision: 2) %></td>
+          <td class="s8"><%= number_with_precision(order_item.amount.to_f, precision: 2) %></td>
         </tr>
       <% end %>
       <tr style="height: 1px;">
@@ -323,12 +323,12 @@
         <th id="1794245641R9" style="height: 23px;" class="row-headers-background left-border"><div class="row-header-wrapper" style="line-height: 23px;"></div></th>
         <td class="s14" colspan="3" rowspan="2"><span style="font-size: 7pt; font-family: Arial; font-weight: bold;">Note: </span><span style="font-size: 7pt; font-family: Arial; font-weight: normal;">This is for just note</span></td>
         <td class="s15" colspan="2">Discount:</td>
-        <td class="s16"><%= order.discount.to_f %></td>
+        <td class="s16"><%= number_with_precision(order.discount.to_f, precision: 2) %></td>
       </tr>
       <tr style="height: 23px;">
         <th id="1794245641R10" style="height: 23px;" class="row-headers-background left-border"><div class="row-header-wrapper" style="line-height: 23px;"></div></th>
         <td class="s17" colspan="2">Total:</td>
-        <td class="s18"><%= order.net_amount.to_f %></td>
+        <td class="s18"><%= number_with_precision(order.net_amount.to_f, precision: 2) %></td>
       </tr>
     </tbody>
   </table>

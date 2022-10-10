@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   resources :customers
   resources :items
   resources :orders do
+    member do
+      get :export
+    end
     collection do
       get :customer_search
       get :item_search

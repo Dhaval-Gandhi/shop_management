@@ -6,11 +6,11 @@ class OrdersController < ApplicationController
     @orders = @orders.where('customers.name ilike :search', search: "%#{@search}%") if @search.present?
   end
 
-  def show
+  def export
     @order = Order.find_by_id(params[:id])
     pdf_html = ActionController::Base.new.render_to_string(template: 'pdfs/order', layout: false, locals: { order: @order })
-    pdf = WickedPdf.new.pdf_from_string(pdf_html, page_height: 148, page_width: 105, margin: {top: 3,bottom: 3, left: 3, right: 3 })
-    send_data pdf, filename: "#{Time.now.to_i}.pdf"
+    pdf = WickedPdf.new.pdf_from_string(pdf_html, page_height: 148, page_width: 105, margin: {top: 10,bottom: 10, left: 10, right: 10 })
+    send_data pdf, filename: "order_#{@order.id}_#{Time.now.to_i}.pdf"
   end
 
   def new
@@ -22,7 +22,7 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     if @order.save
-      flash[:notice] = 'Order Successfully Created!'
+      flash[:notice] = 'Order created successfully!'
       redirect_to orders_path
     else
       flash[:alert] = @order.errors.full_messages.join(', ')
@@ -39,12 +39,22 @@ class OrdersController < ApplicationController
   def update
     @order = Order.find_by_id(params[:id])
     if @order.update(order_params)
-      flash[:notice] = 'Order Successfully Updated!'
+      flash[:notice] = 'Order updated successfully!'
       redirect_to orders_path
     else
       flash[:alert] = @order.errors.full_messages.join(', ')
       render :edit
     end
+  end
+
+  def destroy
+    @order = Order.find_by_id(params[:id])
+    if @order.destroy
+      flash[:notice] = 'Order deleted successfully!'
+    else
+      flash[:alert] = @order.errors.full_messages.join(', ')
+    end
+    redirect_to orders_path
   end
 
   def customer_search
