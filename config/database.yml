@@ -81,8 +81,8 @@ development:
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
 #
-# production:
-#   <<: *default
-#   database: shop_management_production
-#   username: shop_management
-#   password: <%= ENV["SHOP_MANAGEMENT_DATABASE_PASSWORD"] %>
+production:
+  <<: *default
+  database: shop_management_production
+  username: shop_management
+  password: <%= ENV["SHOP_MANAGEMENT_DATABASE_PASSWORD"] %>
