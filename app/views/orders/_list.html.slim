@@ -4,7 +4,7 @@
       td
         = order.id
       td
-        = order.date
+        = order.date.strftime('%d-%b-%Y')
       td
         = order.customer.name
       td
