@@ -1,0 +1,80 @@
+- content_for :title do
+  |  Order
+- content_for :action_buttons do
+  .row
+    .col
+      = link_to 'Export', export_order_path(id: @order.id), class: 'btn btn-warning'
+    .col
+      = link_to 'Back', :back, class: 'btn btn-secondary'
+
+hr
+.row
+  .col-5
+    hr
+    .row.mb-3
+      .col
+        strong
+          | Order No: 
+        = @order.id
+      .col
+        strong
+          | Date: 
+        = @order.date.strftime('%d-%b-%Y')
+
+    .row.mb-3
+      .col
+        strong
+          | Customer Name: 
+        = @order.customer&.name
+      .col
+        strong
+          | Contact: 
+        = @order.customer&.contact
+    hr
+    .row.mb-3
+      .col
+        h3
+          | Items
+    .row.mb-3
+      .col
+        table.table.table-bordered
+          thead
+            tr
+              th
+                | Name
+              th
+                | Qty
+              th
+                | Unit
+              th
+                | Rate
+              th
+                | Amount
+          tbody
+            - @order.order_items.each do |order_item|
+              tr
+                td
+                  = order_item.item&.name
+                td
+                  = number_with_precision(order_item.qty.to_f, precision: 3)
+                td 
+                  = order_item.item&.unit
+                td
+                  = number_with_precision(order_item.rate.to_f, precision: 2)
+                td
+                  = number_with_precision(order_item.amount.to_f, precision: 2)
+    hr
+    .row.mb-3
+      .col-3 
+        strong
+          | Total: 
+        = number_with_precision(@order.amount.to_f, precision: 2)
+      .col-3 
+        strong
+          | Discount: 
+        = number_with_precision(@order.discount.to_f, precision: 2)
+      .col-3 
+        strong
+          | Net Total: 
+          span.text-success
+            = number_with_precision(@order.net_amount.to_f, precision: 2)

@@ -6,6 +6,7 @@
       = link_to 'Back', customers_path, class: 'btn btn-secondary'
     .col
       = button_to 'Delete', customer_path(id: @customer.id), method: :delete, class: 'btn btn-danger'
+hr
 .row.mb-3
   .col
     strong
@@ -19,9 +20,10 @@
     strong
       | Address: 
     = @customer.address    
+hr
 .row.my-3
   .col
-    h2
+    h3
       | Orders
 .row.mb-3
   table.table.table-bordered
