@@ -4,7 +4,7 @@ class OrderItem < ApplicationRecord
   belongs_to :item
 
   before_save :calculate_amount
-  after_save :calculate_order_net_amount
+  after_commit :calculate_order_net_amount
 
   def calculate_amount
     self.qty = self.qty.to_f.zero? ? 1 : self.qty.to_f
