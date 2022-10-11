@@ -2,7 +2,7 @@
   - orders.each do |order|
     tr
       td
-        = order.id
+        = link_to order.id, order_path(id: order.id)
       td
         = order.date.strftime('%d-%b-%Y')
       td
@@ -15,8 +15,6 @@
             = link_to 'Edit', edit_order_path(id: order.id), class: 'btn btn-sm btn-primary'
           .col
             = button_to 'Delete', order_path(id: order.id), method: :delete, class: 'btn btn-sm btn-danger'
-          .col
-            = link_to 'Export', export_order_path(id: order.id), class: 'btn btn-sm btn-info'
 - else
   tr
     td.text-danger[colspan="5"]

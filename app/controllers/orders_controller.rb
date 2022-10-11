@@ -6,6 +6,10 @@ class OrdersController < ApplicationController
     @orders = @orders.where('customers.name ilike :search', search: "%#{@search}%") if @search.present?
   end
 
+  def show
+    @order = Order.find_by_id(params[:id])
+  end
+
   def export
     @order = Order.find_by_id(params[:id])
     pdf_html = ActionController::Base.new.render_to_string(template: 'pdfs/order', layout: false, locals: { order: @order })
