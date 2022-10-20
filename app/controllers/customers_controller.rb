@@ -3,7 +3,6 @@ class CustomersController < ApplicationController
     @search = params[:search]
     @customers = Customer.all
     @customers = @customers.where('name ilike :search OR contact ilike :search', search: "%#{@search}%") if @search.present?
-    @customers = @customers.paginate(page: params[:page] || 1, per_page: 1)
   end
 
   def show

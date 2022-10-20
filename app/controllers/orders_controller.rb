@@ -12,7 +12,7 @@ class OrdersController < ApplicationController
 
   def export
     @order = Order.find_by_id(params[:id])
-    pdf_html = ActionController::Base.new.render_to_string(template: 'pdfs/order', layout: false, locals: { order: @order })
+    pdf_html = ActionController::Base.new.render_to_string(template: 'pdfs/order', layout: false, locals: { order: @order, setting: Setting.last })
     pdf = WickedPdf.new.pdf_from_string(pdf_html, page_height: 148, page_width: 105, margin: {top: 10,bottom: 10, left: 10, right: 10 })
     send_data pdf, filename: "order_#{@order.id}_#{Time.now.to_i}.pdf"
   end

@@ -57,6 +57,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_12_043659) do
     t.string "cmp_name"
     t.text "cmp_address"
     t.string "cmp_gst"
+    t.string "totp_key"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

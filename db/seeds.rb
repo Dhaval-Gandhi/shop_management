@@ -5,3 +5,12 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+if Setting.count.zero?
+  setting = Setting.create({
+    cmp_name: 'ABC company',
+    cmp_address: 'Company Address',
+    cmp_gst: 'GST number',
+    totp_key: Otp::Totp.new.secret
+  })
+end
