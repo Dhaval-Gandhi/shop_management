@@ -1,2 +1,22 @@
 - content_for :title do
-  |  Title 
+  |  Company Details
+
+= form_tag '/update_company_details', method: :post do
+  .row
+    .col-2
+      | Company Name
+    .col
+      = text_field_tag 'setting[cmp_name]', @setting.cmp_name, class: 'form-control'
+  .row
+    .col-2
+      | Company Address
+    .col
+      = text_field_tag 'setting[cmp_address]', @setting.cmp_address, class: 'form-control'
+  .row
+    .col-2
+      | Company GST
+    .col
+      = text_field_tag 'setting[cmp_gst]', @setting.cmp_gst, class: 'form-control'
+  .row
+    .col-2
+      = button_tag :update, class: 'btn btn-success'

@@ -36,6 +36,6 @@
 
   .row.ms-3.mb-3
     .col-md-3
-      - btn_title = @order.persisted? ? 'Update' : 'Add'
+      - btn_title = @order.persisted? ? 'Update Order' : 'Create Order'
       = f.submit btn_title, class: 'btn btn-success'
         

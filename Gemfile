@@ -52,6 +52,9 @@ gem 'bootstrap', '~> 5.1.3'
 gem 'slim'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
+gem 'will_paginate', '~> 3.3'
+gem 'base32'
+gem "rqrcode", "~> 2.0"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
