@@ -25,6 +25,7 @@ set :puma_workers, 0
 
 # Default value for :linked_files is []
 # append :linked_files, "config/database.yml", 'config/master.key'
+set :linked_files, fetch(:linked_files, []).push("config/master.key")
 
 # Default value for linked_dirs is []
 # append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "tmp/webpacker", "public/system", "vendor", "storage"
@@ -52,7 +53,7 @@ set :puma_state,      "#{shared_path}/tmp/pids/puma.state"
 set :puma_pid,        "#{shared_path}/tmp/pids/puma.pid"
 set :puma_access_log, "#{release_path}/log/puma.error.log"
 set :puma_error_log,  "#{release_path}/log/puma.access.log"
-set :ssh_options,     { forward_agent: true, user: fetch(:user), keys: %w(~/.ssh/id_ecdsa.pub) }
+set :ssh_options,     { forward_agent: true, user: fetch(:user), auth_methods: %w(publickey), keys: %w(~/.ssh/testing.pem) }
 set :puma_preload_app, true
 set :puma_worker_timeout, nil
 set :puma_init_active_record, true  # Change to false when not using ActiveRecord
@@ -67,15 +68,15 @@ namespace :puma do
     end
   end
 
-  before :start, :make_dirs
+  # before :start, :make_dirs
 end
 
 namespace :deploy do
   desc "Make sure local git is in sync with remote."
   task :check_revision do
     on roles(:app) do
-      unless `git rev-parse HEAD` == `git rev-parse origin/master`
-        puts "WARNING: HEAD is not the same as origin/master"
+      unless `git rev-parse HEAD` == `git rev-parse origin/main`
+        puts "WARNING: HEAD is not the same as origin/main"
         puts "Run `git push` to sync changes."
         exit
       end
@@ -97,7 +98,7 @@ namespace :deploy do
     end
   end
 
-  before :starting,     :check_revision
+  # before :starting,     :check_revision
   after  :finishing,    :compile_assets
   after  :finishing,    :cleanup
   after  :finishing,    :restart
