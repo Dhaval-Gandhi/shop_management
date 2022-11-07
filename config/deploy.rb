@@ -25,7 +25,8 @@ set :puma_workers, 0
 
 # Default value for :linked_files is []
 # append :linked_files, "config/database.yml", 'config/master.key'
-set :linked_files, fetch(:linked_files, []).push("config/master.key")
+
+set :linked_files, %w{config/master.key config/database.yml}
 
 # Default value for linked_dirs is []
 # append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "tmp/webpacker", "public/system", "vendor", "storage"
@@ -68,7 +69,7 @@ namespace :puma do
     end
   end
 
-  # before :start, :make_dirs
+  before :start, :make_dirs
 end
 
 namespace :deploy do
